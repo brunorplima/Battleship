@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import BoardContainer from './component/board/BoardContainer'
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App-container d-flex justify-content-center'>
+      <div className="App">
+        <header className="App-header text-center">
+          <h1>Battleship Game</h1>
+        </header>
+        
+        <div className='side-menu'>
+          <h3>Menu</h3>
+        </div>
+
+        <div className='main-screen d-flex justify-content-center align-items-center'>
+          <BoardContainer />
+        </div>
+          
+      </div>
     </div>
   );
 }
