@@ -1,0 +1,36 @@
+.board-container {
+   display: grid;
+   grid-template-columns: 1fr 9fr;
+   grid-template-rows: 1fr 9fr;
+}
+
+.static-row, .static-column {
+   display: grid;
+}
+
+.static-row {
+   grid-template-rows: 1fr;
+   grid-template-columns: repeat(10, 1fr);
+   column-gap: 1px;
+   margin-bottom: 5px;
+}
+
+.static-column {
+   grid-template-columns: 1fr;
+   grid-template-rows: repeat(10, 1fr);
+   row-gap: 1px;
+   margin-right: 5px;
+}
+
+.board-container {
+   width: 330px;
+   height: 330px;
+}
+
+.board {
+   display: grid;
+   grid-template-columns: repeat(10, 3fr);
+   grid-template-rows: repeat(10, 3fr);
+   column-gap: 1px;
+   row-gap: 1px;
+}
