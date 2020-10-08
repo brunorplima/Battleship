@@ -1,0 +1,35 @@
+.ships-menu-container {
+   background-color: rgba(0, 0, 100, .3);
+   margin-top: 1rem;
+   padding: 1rem;
+}
+
+.ship {
+   height: 20px;
+   background-color: darkgray;
+   margin-bottom: 1rem;
+   color: black;
+   cursor: pointer;
+}
+
+.ships {
+   /* margin-right: 1rem; */
+}
+
+.rotate-btn {
+   min-width: 9rem;
+}
+.rotate-btn > div {
+   margin-bottom: 1rem;
+}
+
+.rotate-div {
+   margin: 1rem 0;
+   background-color: white;
+   width: 2rem;
+   height: 2rem;
+}
+.arrow-icon {
+   font-size: 1.5rem;
+   /* transform: rotate(180deg); */
+}
