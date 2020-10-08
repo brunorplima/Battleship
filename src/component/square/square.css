@@ -1,6 +1,12 @@
 .board-item {
-   background-color: aliceblue;
+   background-color: white;
+   color: white;
+   font-size: .8rem;
+   user-select: none;
+   transition: .2s;
+}
+
+.static-square {
    color: black;
-   font-size: 1.2rem;
 }
 

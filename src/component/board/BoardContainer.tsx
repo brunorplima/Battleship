@@ -1,34 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Board from './Board';
 import SquareContainer from '../square/SquareContainer';
 import StaticSquare from '../square/StaticSquare';
 
 import './board.css';
 
-const BoardContainer = () => {
+interface Props {
+   isMyBoard: boolean   
+}
+
+const BoardContainer = ({ isMyBoard }: Props) => {
+   const [shipLocations, setShipLocations] = useState<number[]>([]);
 
    function getBoardSquares(isStatic: boolean, isRow: boolean) {
       const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
       const squares = [];
       if (isStatic) {
          for (let i = 0; i < 10; i++) {
-            squares.push(<StaticSquare content={isRow ? i+1 : letters[i]}/>);
+            squares.push(<StaticSquare key={'ss-' + i} content={isRow ? i+1 : letters[i]}/>);
          }
       } else {
-         for (let i = 0; i < 100; i++) {
-            const digit = getLastDigit(i+1);
+         for (let i = 1; i <= 100; i++) {
             // const 
             let letter = letters[Math.floor(i / 10)]
-            squares.push(<SquareContainer id={digit + letter}/>);
+            const { id, x, y } = generateId(i);
+            squares.push(
+               <SquareContainer 
+                  key={id}
+                  id={id}
+                  x={x}
+                  y={y}
+                  value={i}
+                  generateId={generateId}
+                  shipLocations={shipLocations}
+                  setShipLocations={setShipLocations}
+                  isMyBoard={isMyBoard}
+               />
+            );
          }
       }
       return squares;
    }
 
+   function generateId(i: number): {id:number, x:number, y:number} {
+      const y = getLastDigit(i);
+      const x = Math.ceil(i / 10);
+      let id = '';
+      if (y < 10) {
+         id = `${x}0${y}`;
+      } else {
+         id = `${x}${y}`;
+      }
+      return {
+         id: Number(id),
+         x,
+         y
+      };
+   }
+
    function getLastDigit(number: number) {
       const theNumber = String(number);
       const numberStr = theNumber.charAt(theNumber.length - 1) === '0' ? '10' : theNumber.charAt(theNumber.length - 1);
-      return numberStr;
+      return Number(numberStr);
    }
 
 
