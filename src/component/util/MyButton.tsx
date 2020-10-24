@@ -1,5 +1,4 @@
 import React, { SyntheticEvent, useState, useEffect } from 'react';
-import Context from '../../context/Context';
 import './css/my-button.css';
 
 interface Props {
