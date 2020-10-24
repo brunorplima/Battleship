@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import BoardContainer from './component/board/BoardContainer';
-import ShipsMenuContainer from './component/ships-menu/ShipsMenuContainer';
 import context from './context/Context';
 import { RotDirection, GameStatus } from './constants/constants';
+import Game from './component/game/Game';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link
+// } from "react-router-dom";
 
 import './App.css';
 
@@ -12,6 +17,7 @@ function App() {
    const [gameStatus, setGameStatus] = useState<string>(GameStatus.placeShips);
    const [currentShipSize, setCurrentShipSize] = useState(0);
    const [occupiedSquares, setOccupiedSquares] = useState<number[]>([]);
+   const [hoverStyledSquares, setHoverStyledSquares] = useState<number[]>([]);
 
 
    const value = {
@@ -22,32 +28,16 @@ function App() {
       rotateDirection,
       setRotateDirection,
       gameStatus,
-      setGameStatus
+      setGameStatus,
+      hoverStyledSquares,
+      setHoverStyledSquares
    }
 
    return (
       <context.Provider value={value}>
          <div className='App-container' style={{backgroundImage: 'url(./images/battleship-bg1.jpg)'}}>
             <div className='app-bg-overlay d-flex justify-content-center'>
-               <div className="App">
-                  <header className="App-header text-center">
-                     <h1>Battleship Game</h1>
-                  </header>
-
-                  <div className='side-menu'>
-                     {/* <h3>Menu</h3> */}
-                  </div>
-
-                  <div className='main-screen d-flex justify-content-center align-items-center'>
-                     {(gameStatus === GameStatus.placeShips) && <BoardContainer isMyBoard={true}/>}
-                     {(gameStatus === GameStatus.attack) && <BoardContainer isMyBoard={false} />}
-                  </div>
-
-                  <div className='menus'>
-                     <ShipsMenuContainer setGameStatus={setGameStatus} />
-                  </div>
-
-               </div>
+               <Game/>
             </div>
          </div>
       </context.Provider>
