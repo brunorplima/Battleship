@@ -1,5 +1,6 @@
 .board-item {
    background-color: white;
+   border: 1px solid black;
    color: white;
    font-size: .8rem;
    user-select: none;
