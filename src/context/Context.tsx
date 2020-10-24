@@ -9,6 +9,8 @@ interface Context {
    setRotateDirection: React.Dispatch<React.SetStateAction<string>>
    gameStatus: string,
    setGameStatus: React.Dispatch<React.SetStateAction<string>>
+   hoverStyledSquares: number[],
+   setHoverStyledSquares: React.Dispatch<React.SetStateAction<number[]>>
 }
 const appContext: Context = {
    currentShipSize: 0,
@@ -18,7 +20,9 @@ const appContext: Context = {
    rotateDirection: '',
    setRotateDirection: () => {},
    gameStatus: '',
-   setGameStatus: () => {}
+   setGameStatus: () => {},
+   hoverStyledSquares: [],
+   setHoverStyledSquares: () => {}
 }
 
 const context = createContext(appContext);
