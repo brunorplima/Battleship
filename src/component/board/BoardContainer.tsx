@@ -6,10 +6,11 @@ import StaticSquare from '../square/StaticSquare';
 import './board.css';
 
 interface Props {
-   isMyBoard: boolean   
+   isMyBoard: boolean,
+   style?: Object
 }
 
-const BoardContainer = ({ isMyBoard }: Props) => {
+const BoardContainer = ({ isMyBoard, style }: Props) => {
    const [shipLocations, setShipLocations] = useState<number[]>([]);
 
    function getBoardSquares(isStatic: boolean, isRow: boolean) {
@@ -21,8 +22,6 @@ const BoardContainer = ({ isMyBoard }: Props) => {
          }
       } else {
          for (let i = 1; i <= 100; i++) {
-            // const 
-            let letter = letters[Math.floor(i / 10)]
             const { id, x, y } = generateId(i);
             squares.push(
                <SquareContainer 
@@ -66,20 +65,23 @@ const BoardContainer = ({ isMyBoard }: Props) => {
 
 
    return (
-      <div className='board-container'>
-         <div></div>
-         <div className='static-row'>
-            {
-               getBoardSquares(true, true)
-            }
+      <>
+         <div className='owner-desc'>{isMyBoard ? 'Your fleet' : "Opponent's fleet"}</div>
+         <div className='board-container' style={style}>
+            <div></div>
+            <div className='static-row'>
+               {
+                  getBoardSquares(true, true)
+               }
+            </div>
+            <div className='static-column'>
+               {
+                  getBoardSquares(true, false)
+               }
+            </div>
+            <Board getBoardSquares={getBoardSquares}/>
          </div>
-         <div className='static-column'>
-            {
-               getBoardSquares(true, false)
-            }
-         </div>
-         <Board getBoardSquares={getBoardSquares}/>
-      </div>
+      </>
    )
 }
 
